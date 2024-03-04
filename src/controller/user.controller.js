@@ -63,6 +63,7 @@ async function httpPostRegisterUser(req, res, next) {
             const token = jwt.sign({ user }, process.env.JWT_SECRET);
             res.status(200).json({
               success: true,
+              userData:user,
               token,
             });
           }
@@ -91,7 +92,8 @@ async function httpPostLogin(req, res, next) {
         res.json({
           success: true,
           status: "Login Successfully",
-          username: user.name,
+          userData:user,
+          role:user.role,
           token,
         });
       });
