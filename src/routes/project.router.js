@@ -11,6 +11,6 @@ const projectRouter = express.Router();
 projectRouter.get("/all", getAllProejcts).get("/allByUser", getAllProjectsByUserId);
 projectRouter.post("/create", postCreateProject);
 projectRouter.put("/updateUsers/:projectId", putUpdateProjectUsers)
-.put("/removeUserFromProject/:userId/:projectId", putRemoveUserFromProject);
+.put("/removeUserFromProject/:projectId", putRemoveUserFromProject);
 
 module.exports = projectRouter;
