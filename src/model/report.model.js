@@ -58,7 +58,7 @@ async function uploadMedia(reportId, mediaFiles) {
 
     const uploadPromises = mediaFiles.map(async (file) => {
       const storageRef = ref(storage, `media/${reportId}/${file.name}`);
-      await uploadBytes(storageRef, file.buffer);
+      await uploadBytes(storageRef, file.buffer, {contentType: "image"});
       return getDownloadURL(storageRef);
     });
 
@@ -69,9 +69,9 @@ async function uploadMedia(reportId, mediaFiles) {
       const extension = getFileExtension(url);
 
       if (extension === "jpg" || extension === "png") {
-        report.media.image.push(cleanFirebaseStorageUrl(url));
+        report.media.image.push(url);
       } else if (extension === "mp4") {
-        report.media.video.push(cleanFirebaseStorageUrl(url));
+        report.media.video.push(url);
       }
     });
 
