@@ -50,9 +50,10 @@ async function updateProjectUsers(id, user) {
 }
 
 async function removeUserFromProject(projectId, userId) {
+  console.log({projectId, userId})
   try {
-    const result = await Project.updateOne(
-      { _id: projectId }, 
+    const result = await Project.findByIdAndUpdate(
+      projectId,
       { $pull: { users: { user_id: userId } } }
     );
     return result; // This object contains information about the operation's outcome.
